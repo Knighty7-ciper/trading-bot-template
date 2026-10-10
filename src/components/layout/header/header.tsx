@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { observer } from 'mobx-react-lite';
+import brandConfig from '@/../brand.config.json';
 import { generateOAuthURL } from '@/components/shared';
 import Button from '@/components/shared_ui/button';
 import useActiveAccount from '@/hooks/api/account/useActiveAccount';
@@ -83,21 +84,9 @@ const AppHeader = observer(() => {
         return () => clearTimeout(timer);
     }, [isAuthorizing, activeLoginid, setIsAuthorizing, authTimeout, isOAuthPending]);
 
-    const handleSignup = useCallback(async () => {
-        try {
-            setIsAuthorizing(true);
-            const oauthUrl = await generateOAuthURL('registration');
-            if (oauthUrl) {
-                window.location.replace(oauthUrl);
-            } else {
-                console.error('Failed to generate OAuth URL for signup');
-                setIsAuthorizing(false);
-            }
-        } catch (error) {
-            console.error('Signup redirection failed:', error);
-            setIsAuthorizing(false);
-        }
-    }, [setIsAuthorizing]);
+    const handleSignup = useCallback(() => {
+        window.open(brandConfig.platform.referral_url, '_blank', 'noopener,noreferrer');
+    }, []);
 
     const handleLogin = useCallback(async () => {
         try {

@@ -4,7 +4,6 @@ import ChartStore from './chart-store';
 import ClientStore from './client-store';
 import CommonStore from './common-store';
 import DashboardStore from './dashboard-store';
-import DataCollectionStore from './data-collection-store';
 import FlyoutHelpStore from './flyout-help-store';
 import FlyoutStore from './flyout-store';
 import GoogleDriveStore from './google-drive-store';
@@ -40,7 +39,6 @@ export default class RootStore {
 
     public chart_store: ChartStore;
     public blockly_store: BlocklyStore;
-    public data_collection_store: DataCollectionStore;
 
     public ui: UiStore;
     public client: ClientStore;
@@ -82,6 +80,5 @@ export default class RootStore {
         // need to be at last for dependency
         this.chart_store = new ChartStore(this);
         this.blockly_store = new BlocklyStore(this);
-        this.data_collection_store = new DataCollectionStore(this, this.core);
     }
 }
