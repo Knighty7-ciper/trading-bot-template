@@ -176,10 +176,17 @@ const AppContent = observer(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [is_api_initialized, client.loginid]);
 
-    if (common?.error) return null;
+    if (common?.error) {
+        return (
+            <div className='app-error-state' role='alert'>
+                <h1>{localize('Unable to connect')}</h1>
+                <p>{localize('Please refresh the page and try again.')}</p>
+            </div>
+        );
+    }
 
     return is_loading ? (
-        <ChunkLoader message={localize('Initializing LevisFX account...')} />
+        <ChunkLoader message={localize('Initializing...')} />
     ) : (
         <AuthLoadingWrapper>
             <ThemeProvider theme={is_dark_mode_on ? 'dark' : 'light'}>
