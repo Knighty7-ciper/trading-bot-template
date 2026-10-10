@@ -3,7 +3,7 @@
     "brand_domain": "levisfx.site",
     "brand_hostname": {
         "staging": "staging.levisfx.site/dashboard",
-        "production": "levisfx-a3.vercel.app/dashboard"
+        "production": "levisfx.site/dashboard"
     },
     "domain_name": "LevisFX.site",
     "colors": {
