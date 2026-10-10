@@ -27,6 +27,7 @@ import '../components/bot-notification/bot-notification.scss';
 const AppContent = observer(() => {
     const [is_api_initialized, setIsApiInitialized] = React.useState(false);
     const [is_loading, setIsLoading] = React.useState(true);
+    const [has_connection_timed_out, setHasConnectionTimedOut] = React.useState(false);
 
     const store = useStore();
     const { app, transactions, common, client } = store;
@@ -56,6 +57,12 @@ const AppContent = observer(() => {
     // NOTE: Disabled Intercom until further notice
     // const token = V2GetActiveToken() ?? null;
     // useIntercom(token);
+
+    useEffect(() => {
+        if (is_api_initialized) return;
+        const timeoutId = setTimeout(() => setHasConnectionTimedOut(true), 15000);
+        return () => clearTimeout(timeoutId);
+    }, [is_api_initialized]);
 
     useEffect(() => {
         if (connectionStatus === CONNECTION_STATUS.OPENED) {
@@ -176,7 +183,7 @@ const AppContent = observer(() => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [is_api_initialized, client.loginid]);
 
-    if (common?.error) {
+    if (common?.error || (has_connection_timed_out && !is_api_initialized)) {
         return (
             <div className='app-error-state' role='alert'>
                 <h1>{localize('Unable to connect')}</h1>

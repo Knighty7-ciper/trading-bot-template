@@ -48,15 +48,17 @@ const MenuContent = observer(({ enableThemeToggle = true, onOpenSubmenu, onLogou
                                     },
                                     itemIndex
                                 ) => {
-                                    const is_deriv_logo = label === 'Deriv.com';
                                     if (as === 'a') {
                                         return (
                                             <MenuItem
                                                 as='a'
-                                                className={clsx('mobile-menu__content__items__item', {
-                                                    'mobile-menu__content__items__icons': !is_deriv_logo,
-                                                    'mobile-menu__content__items__item--active': isActive,
-                                                })}
+                                                className={clsx(
+                                                    'mobile-menu__content__items__item',
+                                                    'mobile-menu__content__items__icons',
+                                                    {
+                                                        'mobile-menu__content__items__item--active': isActive,
+                                                    }
+                                                )}
                                                 disableHover
                                                 href={href}
                                                 key={`${index}-${itemIndex}-${label}`}
@@ -76,10 +78,13 @@ const MenuContent = observer(({ enableThemeToggle = true, onOpenSubmenu, onLogou
                                     return (
                                         <MenuItem
                                             as='button'
-                                            className={clsx('mobile-menu__content__items__item', {
-                                                'mobile-menu__content__items__icons': !is_deriv_logo,
-                                                'mobile-menu__content__items__item--active': isActive,
-                                            })}
+                                            className={clsx(
+                                                'mobile-menu__content__items__item',
+                                                'mobile-menu__content__items__icons',
+                                                {
+                                                    'mobile-menu__content__items__item--active': isActive,
+                                                }
+                                            )}
                                             disableHover
                                             key={`${index}-${itemIndex}-${label}`}
                                             leftComponent={
