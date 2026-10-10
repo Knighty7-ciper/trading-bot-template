@@ -2,26 +2,71 @@
     font-family: 'Ubuntu', sans-serif;
     height: 100vh;
     width: 100vw;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: #070b13;
+    color: #f8fbff;
+}
+
+.branded-loader {
     position: relative;
-    align-items: center;
-    background: linear-gradient(145deg, #0b0f17 0%, #111827 55%, #0a4fc4 180%);
+    display: grid;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% 35%, rgba(15, 91, 255, 0.18), transparent 32%), #070b13;
+
+    &__glow {
+        position: absolute;
+        width: 24rem;
+        height: 24rem;
+        top: 18%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background: rgba(15, 91, 255, 0.2);
+        filter: blur(80px);
+        pointer-events: none;
+    }
 
     &__content {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100%;
-        gap: 40px;
+        gap: 1.25rem;
+        padding: 2rem;
     }
 
-    &__title {
-        color: #000;
-        font-size: 24px;
-        text-align: center;
-        font-weight: bold;
+    &__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        color: #f8fbff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    &__mark {
+        display: grid;
+        width: 2.25rem;
+        height: 2.25rem;
+        place-items: center;
+        border-radius: 0.7rem;
+        background: linear-gradient(135deg, #0f5bff, #54c8ff);
+        color: #fff;
+        box-shadow: 0 0 24px rgba(15, 91, 255, 0.45);
+    }
+
+    .load-message {
         margin: 0;
+        color: #f8fbff;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    &__hint {
+        color: #8491a8;
+        font-size: 0.8rem;
     }
 }
