@@ -5,7 +5,7 @@ import { LegacyLogout1pxIcon, LegacyTheme1pxIcon } from '@deriv/quill-icons/Lega
 import { useTranslations } from '@deriv-com/translations';
 import { ToggleSwitch } from '@deriv-com/ui';
 
-export type TSubmenuSection = 'accountSettings' | 'cashier' | 'reports';
+export type TSubmenuSection = 'accountSettings' | 'cashier';
 
 //IconTypes
 type TMenuConfig = {
@@ -30,7 +30,6 @@ const useMobileMenuConfig = (
     const { is_dark_mode_on, toggleTheme } = useThemeSwitcher();
 
     const menuConfig = useMemo((): TMenuConfig[] => {
-
         return [
             [
                 // ========================================
@@ -47,8 +46,6 @@ const useMobileMenuConfig = (
                 //     href: '/your-page',
                 // },
                 //
-                // For desktop menu items, see:
-                // src/components/layout/header/header-config.tsx
 
                 // Conditionally include theme toggle based on brand config
                 enableThemeToggle && {

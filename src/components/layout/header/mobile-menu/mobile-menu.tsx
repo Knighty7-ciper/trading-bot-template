@@ -15,7 +15,6 @@ import ServerTime from './../../footer/ServerTime';
 import BackButton from './back-button';
 import MenuContent from './menu-content';
 import MenuHeader from './menu-header';
-import ReportsSubmenu from './reports-submenu';
 import ToggleButton from './toggle-button';
 // [AI] Import hook to check if menu has items
 import useMobileMenuConfig from './use-mobile-menu-config';
@@ -28,7 +27,6 @@ type TMobileMenuProps = {
 
 const MobileMenu = ({ onLogout }: TMobileMenuProps) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null);
     const { currentLang = 'EN', localize, switchLanguage } = useTranslations();
     const { hideModal, isModalOpenFor, showModal } = useModalManager();
     const { isDesktop } = useDevice();
@@ -46,11 +44,8 @@ const MobileMenu = ({ onLogout }: TMobileMenuProps) => {
     const openDrawer = () => setIsDrawerOpen(true);
     const closeDrawer = () => {
         setIsDrawerOpen(false);
-        setActiveSubmenu(null);
     };
 
-    const openSubmenu = (submenu: string) => setActiveSubmenu(submenu);
-    const closeSubmenu = () => setActiveSubmenu(null);
     const openLanguageSetting = () => showModal('MobileLanguagesDrawer');
     const isLanguageSettingVisible = Boolean(isModalOpenFor('MobileLanguagesDrawer'));
 
@@ -103,17 +98,9 @@ const MobileMenu = ({ onLogout }: TMobileMenuProps) => {
                                 wrapperClassName='mobile-menu__language-drawer'
                             />
                         </>
-                    ) : activeSubmenu === 'reports' ? (
-                        <>
-                            <div className='mobile-menu__back-btn'>
-                                <BackButton buttonText={localize('Reports')} onClick={closeSubmenu} />
-                            </div>
-                            <ReportsSubmenu />
-                        </>
                     ) : (
                         <MenuContent
                             enableThemeToggle={enableThemeToggle}
-                            onOpenSubmenu={openSubmenu}
                             onLogout={() => {
                                 closeDrawer();
                                 onLogout?.();
