@@ -154,7 +154,7 @@ const AppContent = observer(() => {
             }, 1000);
 
             // Do not leave the entire application behind a failed market-data request.
-            setTimeout(() => finishInitialization('active symbols request timed out'), 10000);
+            setTimeout(() => finishInitialization('active symbols request timed out'), 4000);
         }
     };
 
