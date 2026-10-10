@@ -120,25 +120,41 @@ const AppContent = observer(() => {
     const changeActiveSymbolLoadingState = () => {
         init();
 
+        let symbolsLoaded = false;
+        let intervalId;
+        const finishInitialization = (reason) => {
+            if (symbolsLoaded) return;
+            symbolsLoaded = true;
+            if (intervalId) clearInterval(intervalId);
+            if (reason) {
+                // Active symbols are useful for charts, but they should not block the rest of the app.
+                console.warn('[v0] Continuing without active symbols:', reason);
+            }
+            setIsLoading(false);
+        };
+
         const retrieveActiveSymbols = () => {
             const { active_symbols } = ApiHelpers.instance;
 
-            active_symbols.retrieveActiveSymbols(true).then(() => {
-                setIsLoading(false);
-            });
+            active_symbols
+                .retrieveActiveSymbols(true)
+                .then(() => finishInitialization())
+                .catch(error => finishInitialization(error));
         };
 
         if (ApiHelpers?.instance?.active_symbols) {
             retrieveActiveSymbols();
         } else {
-            // This is a workaround to fix the issue where the active symbols are not loaded immediately
-            // when the API is initialized. Should be replaced with RxJS pubsub
-            const intervalId = setInterval(() => {
+            // ApiHelpers can be attached shortly after the API connection is ready.
+            intervalId = setInterval(() => {
                 if (ApiHelpers?.instance?.active_symbols) {
                     clearInterval(intervalId);
                     retrieveActiveSymbols();
                 }
             }, 1000);
+
+            // Do not leave the entire application behind a failed market-data request.
+            setTimeout(() => finishInitialization('active symbols request timed out'), 10000);
         }
     };
 
