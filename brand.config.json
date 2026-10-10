@@ -1,21 +1,21 @@
 {
-    "brand_name": "YourBrand",
-    "brand_domain": "yourbrand.com",
+    "brand_name": "LevisFX",
+    "brand_domain": "levisfx.site",
     "brand_hostname": {
-        "staging": "staging.yourbrand.com/dashboard",
-        "production": "yourbrand.com/dashboard"
+        "staging": "staging.levisfx.site/dashboard",
+        "production": "levisfx.site/dashboard"
     },
-    "domain_name": "YourBrand.com",
+    "domain_name": "LevisFX.site",
     "colors": {
-        "primary": "#3b82f6",
-        "secondary": "#64748b",
-        "tertiary": "#8b5cf6",
+        "primary": "#1f7bff",
+        "secondary": "#c9d1dc",
+        "tertiary": "#0a4fc4",
         "success": "#10b981",
         "danger": "#ef4444",
         "warning": "#f59e0b",
-        "info": "#0ea5e9",
+        "info": "#38bdf8",
         "neutral": "#6b7280",
-        "black": "#0f172a",
+        "black": "#0b0f17",
         "white": "#ffffff",
         "grey": {
             "50": "#f8fafc",
@@ -58,14 +58,14 @@
         "css_variable_prefix": "--brand"
     },
     "platform": {
-        "name": "Trading Bot",
+        "name": "LevisFX",
         "logo": {
             "type": "component",
             "component_name": "BrandLogo",
-            "alt_text": "Trading Bot",
+            "alt_text": "LevisFX",
             "link_url": "/",
             "show_text": false,
-            "text": "Trading Bot"
+            "text": "LevisFX"
         },
         "footer": {
             "enable_language_settings": false,
@@ -73,10 +73,10 @@
         },
         "hostname": {
             "production": {
-                "com": "bot.yourbrand.com"
+                "com": "levisfx.site"
             },
             "staging": {
-                "com": "staging-bot.yourbrand.com"
+                "com": "staging.levisfx.site"
             }
         },
         "auth2_url": {
