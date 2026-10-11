@@ -55,7 +55,7 @@ const StopBotModalContent = ({
                                     key={0}
                                     className='link'
                                     onClick={() =>
-                                        window.location.assign(generateUrlWithRedirect(standalone_routes.reports))
+                                        window.open(generateUrlWithRedirect(standalone_routes.reports), '_blank', 'noopener,noreferrer')
                                     }
                                 >
                                     <Localize i18n_default_text='Reports' />
@@ -79,7 +79,7 @@ const StopBotModalContent = ({
                                     key={0}
                                     className='link'
                                     onClick={() =>
-                                        window.location.assign(generateUrlWithRedirect(standalone_routes.reports))
+                                        window.open(generateUrlWithRedirect(standalone_routes.reports), '_blank', 'noopener,noreferrer')
                                     }
                                 >
                                     <Localize i18n_default_text='Reports' />

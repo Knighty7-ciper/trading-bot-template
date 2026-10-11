@@ -149,7 +149,7 @@ export default class RunPanelStore {
 
             // Use generateUrlWithRedirect to add redirect parameter and account_type from localStorage
             const urlWithRedirect = generateUrlWithRedirect(baseUrl);
-            window.location.assign(urlWithRedirect);
+            window.open(urlWithRedirect, '_blank', 'noopener,noreferrer');
         };
 
         botNotification(notification_message().bot_stop, {

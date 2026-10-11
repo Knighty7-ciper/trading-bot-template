@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import Text from '@/components/shared_ui/text';
 import { useStore } from '@/hooks/useStore';
-import { navigateToUrl, reloadPage } from '@/utils/navigation-utils';
+import { reloadPage } from '@/utils/navigation-utils';
 import { generateUrlWithRedirect } from '@/utils/url-redirect-utils';
 import { LegacyClose1pxIcon } from '@deriv/quill-icons/Legacy';
 import { Localize, localize } from '@deriv-com/translations';
@@ -22,7 +22,9 @@ const BotStopped = observer(() => {
             className={'dc-dialog bot-stopped-dialog'}
             cancel_button_text={localize('Go to Reports')}
             confirm_button_text={localize('Back to Bot')}
-            onCancel={() => navigateToUrl(generateUrlWithRedirect(standalone_routes.positions))}
+            onCancel={() =>
+                window.open(generateUrlWithRedirect(standalone_routes.positions), '_blank', 'noopener,noreferrer')
+            }
             onConfirm={reloadPage}
             login={() => {}} // Empty function as login is not needed for this dialog
         >
