@@ -35,18 +35,7 @@ export const isProduction = () => {
 
 export const isLocal = () => /localhost(:\d+)?$/i.test(window.location.hostname);
 
-const getDefaultServerURL = () => {
-    const isProductionEnv = isProduction();
-
-    try {
-        return isProductionEnv ? WS_SERVERS.PRODUCTION : WS_SERVERS.STAGING;
-    } catch (error) {
-        console.error('Error in getDefaultServerURL:', error);
-    }
-
-    // Production defaults to demov2, staging/preview defaults to qa194 (demo)
-    return isProductionEnv ? WS_SERVERS.PRODUCTION : WS_SERVERS.STAGING;
-};
+const getDefaultServerURL = () => WS_SERVERS.PRODUCTION;
 
 /**
  * Gets the WebSocket URL using the new authenticated flow

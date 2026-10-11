@@ -1,71 +1,159 @@
 .app-root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+}
+
+.bot__loading {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+}
+
+@keyframes branded-loader-sweep {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(350%);
+    }
+}
+
+@keyframes branded-loader-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes branded-loader-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .branded-loader {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 20rem;
-  overflow: hidden;
-  background: radial-gradient(circle at 50% 35%, rgba(15, 91, 255, 0.18), transparent 32%), #070b13;
-  color: #f8fbff;
-
-  &__glow {
-    position: absolute;
-    width: 24rem;
-    height: 24rem;
-    top: 18%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(15, 91, 255, 0.2);
-    filter: blur(80px);
-    pointer-events: none;
-  }
-
-  &__content {
     position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.25rem;
-    padding: 2rem;
-  }
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgb(84 200 255 / 12%), transparent 55%),
+        radial-gradient(ellipse at 50% 100%, rgb(15 91 255 / 10%), transparent 60%), #05080f;
+    color: #eef3fb;
+    font-family: inherit;
 
-  &__brand {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    color: #f8fbff;
-    font-size: 1.25rem;
-    font-weight: 700;
-  }
+    &__glow {
+        position: absolute;
+        width: 36rem;
+        height: 36rem;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(circle, rgb(15 91 255 / 22%), transparent 65%);
+        pointer-events: none;
+    }
 
-  &__mark {
-    display: grid;
-    width: 2.25rem;
-    height: 2.25rem;
-    place-items: center;
-    border-radius: 0.7rem;
-    background: linear-gradient(135deg, #0f5bff, #54c8ff);
-    color: #fff;
-    box-shadow: 0 0 24px rgba(15, 91, 255, 0.45);
-  }
+    &__content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.6rem;
+        padding: 2rem;
+        animation: branded-loader-fade-in 0.6s ease-out both;
+    }
 
-  .load-message {
-    margin: 0;
-    color: #f8fbff;
-    font-size: 1rem;
-    font-weight: 600;
-  }
+    &__brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 
-  &__hint {
-    color: #a7b3c8;
-    font-size: 0.875rem;
-  }
+    &__mark {
+        position: relative;
+        display: grid;
+        width: 4.25rem;
+        height: 4.25rem;
+        place-items: center;
+        border-radius: 1.25rem;
+        background: linear-gradient(145deg, #1d6bff, #0a3fc2);
+        color: #fff;
+        font-size: 1.9rem;
+        font-weight: 700;
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 25%),
+            0 12px 40px rgb(15 91 255 / 35%);
+
+        &:before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 1.6rem;
+            background: conic-gradient(from 0deg, transparent 0 70%, rgb(84 200 255 / 90%) 85%, transparent 100%);
+            mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1px));
+            animation: branded-loader-spin 2.4s linear infinite;
+        }
+    }
+
+    &__wordmark {
+        font-size: 1.4rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    &__track {
+        position: relative;
+        width: 16rem;
+        height: 2px;
+        overflow: hidden;
+        border-radius: 999px;
+        background: rgb(255 255 255 / 8%);
+    }
+
+    &__bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 40%;
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, #54c8ff, transparent);
+        animation: branded-loader-sweep 1.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+
+    .load-message {
+        margin: 0;
+        color: #cfd8e8;
+        font-size: 1.1rem;
+        font-weight: 500;
+        letter-spacing: 0.01em;
+    }
+
+    &__hint {
+        color: #5f6d86;
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        &__content,
+        &__mark:before,
+        &__bar {
+            animation-duration: 6s;
+        }
+    }
 }

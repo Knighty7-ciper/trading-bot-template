@@ -62,6 +62,7 @@ export default class GoogleDriveStore {
         this.setKey();
         this.client = null;
         this.access_token = localStorage.getItem('google_access_token') ?? '';
+        if (!this.client_id) return;
         setTimeout(() => {
             importExternal('https://accounts.google.com/gsi/client').then(() => this.initialiseClient());
             importExternal('https://apis.google.com/js/api.js').then(() => this.initialise());
