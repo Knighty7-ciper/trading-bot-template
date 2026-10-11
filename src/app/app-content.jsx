@@ -135,7 +135,7 @@ const AppContent = observer(() => {
             if (intervalId) clearInterval(intervalId);
             if (reason) {
                 // Active symbols are useful for charts, but they should not block the rest of the app.
-                console.warn('[v0] Continuing without active symbols:', reason);
+                console.warn('Continuing without active symbols:', reason);
             }
             setIsLoading(false);
         };
@@ -167,7 +167,6 @@ const AppContent = observer(() => {
 
     React.useEffect(() => {
         if (is_api_initialized) {
-            init();
             setIsLoading(true);
             if (!client.is_logged_in) {
                 changeActiveSymbolLoadingState();

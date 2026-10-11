@@ -108,7 +108,7 @@ export const faq_content = (): TFaqContent[] => [
             {
                 type: 'text',
                 content: localize(
-                    'For more info, <a href="https://deriv.com/academy/blog/posts/how-to-build-a-basic-trading-bot-with-dbot/" target="_blank">check out this blog post</a> on the basics of building a trading bot.'
+                    'For more info on the basics of building a trading bot, explore the tutorials on this site.'
                 ),
             },
         ],
@@ -441,7 +441,7 @@ export const faq_content = (): TFaqContent[] => [
             {
                 type: 'text',
                 content: localize(
-                    '<a href="https://www.youtube.com/watch?v=QdI5zCkO4Gk&t=203s" target="_blank">Watch this video</a> to learn how to build a trading bot on LevisFX. Also, <a href="https://deriv.com/academy/blog/posts/how-to-build-a-basic-trading-bot-with-dbot/" target="_blank">check out this blog post</a> on building a trading bot.'
+                    '<a href="https://www.youtube.com/watch?v=QdI5zCkO4Gk&t=203s" target="_blank">Watch this video</a> to learn how to build a trading bot on LevisFX. Also, explore the tutorials on this site for more on building a trading bot.'
                 ),
             },
         ],

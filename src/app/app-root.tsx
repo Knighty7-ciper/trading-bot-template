@@ -40,11 +40,7 @@ const AppRoot = () => {
 
     // Initialize API
     useEffect(() => {
-        const timeoutId = setTimeout(() => {
-            if (!is_api_initialized) {
-                setIsApiInitialized(true);
-            }
-        }, 5000);
+        const timeoutId = setTimeout(() => setIsApiInitialized(true), 5000);
 
         const initializeApi = async () => {
             if (!api_base_initialized.current) {

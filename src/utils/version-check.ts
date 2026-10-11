@@ -1,21 +1,33 @@
 import Cookies from 'js-cookie';
 import { BOT_VERSION_CONFIG } from '@/constants/bot-version';
 
+const PRESERVED_STORAGE_KEYS = [
+    BOT_VERSION_CONFIG.STORAGE_KEY,
+    'active_loginid',
+    'account_type',
+    'accountsList',
+    'clientAccounts',
+    'client_account_details',
+    'client.country',
+    'authToken',
+    'session_token',
+    'google_access_token',
+    'google_access_token_expiry',
+    'theme',
+    'i18n_language',
+    'dbot_settings',
+    'bot-announcements',
+    'dbot_should_show_info',
+];
+
 /**
- * Clears all localStorage data except for the bot_version
+ * Clears localStorage except login, session and user preference keys
  */
 const clearLocalStorage = (): void => {
     try {
-        // Get the current bot_version before clearing
-        const currentBotVersion = localStorage.getItem(BOT_VERSION_CONFIG.STORAGE_KEY);
-
-        // Clear all localStorage
-        localStorage.clear();
-
-        // Restore the bot_version if it existed
-        if (currentBotVersion) {
-            localStorage.setItem(BOT_VERSION_CONFIG.STORAGE_KEY, currentBotVersion);
-        }
+        Object.keys(localStorage)
+            .filter(key => !PRESERVED_STORAGE_KEYS.includes(key))
+            .forEach(key => localStorage.removeItem(key));
     } catch (error) {
         console.error('Error clearing localStorage:', error);
     }
