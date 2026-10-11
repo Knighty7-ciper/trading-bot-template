@@ -39,6 +39,7 @@ import { Localize, localize } from '@deriv-com/translations';
 import { useDevice } from '@deriv-com/ui';
 import RunPanel from '../../components/run-panel';
 import ChartModal from '../chart/chart-modal';
+import AnalysisPanel from '../analysis/analysis-panel';
 import Dashboard from '../dashboard';
 import RunStrategy from '../dashboard/run-strategy';
 import './main.scss';
@@ -417,13 +418,14 @@ const AppWrapper = observer(() => {
                                         ? 'id-charts--disabled'
                                         : 'id-charts'
                                 }
-                            >
-                                <Suspense
-                                    fallback={<ChunkLoader message={localize('Please wait, loading chart...')} />}
                                 >
-                                    <ChartWrapper show_digits_stats={false} />
-                                </Suspense>
-                            </div>
+                                    <AnalysisPanel />
+                                    <Suspense
+                                        fallback={<ChunkLoader message={localize('Please wait, loading chart...')} />}
+                                    >
+                                        <ChartWrapper show_digits_stats={false} />
+                                    </Suspense>
+                                </div>
                             <div
                                 label={
                                     <>
