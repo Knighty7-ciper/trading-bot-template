@@ -5,6 +5,16 @@
   font-size: 1.6rem;
 }
 
+@keyframes branded-loader-pulse {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
 .bot__loading {
   position: fixed;
   inset: 0;
@@ -61,6 +71,15 @@
     background: linear-gradient(135deg, #0f5bff, #54c8ff);
     color: #fff;
     box-shadow: 0 0 24px rgba(15, 91, 255, 0.45);
+  }
+
+  &__pulse {
+    width: 4.5rem;
+    height: 0.3rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, transparent, #54c8ff, #0f5bff, transparent);
+    background-size: 200% 100%;
+    animation: branded-loader-pulse 1.4s ease-in-out infinite;
   }
 
   .load-message {
