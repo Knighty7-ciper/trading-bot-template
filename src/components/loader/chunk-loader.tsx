@@ -6,10 +6,14 @@ export default function ChunkLoader({ message }: { message: string }) {
             <div className='branded-loader__glow' aria-hidden='true' />
             <div className='branded-loader__content'>
                 <div className='branded-loader__brand'>
-                    <span className='branded-loader__mark' aria-hidden='true'>L</span>
-                    <span>{brandConfig.platform.name || 'LevisFX'}</span>
+                    <span className='branded-loader__mark' aria-hidden='true'>
+                        L
+                    </span>
+                    <span className='branded-loader__wordmark'>{brandConfig.platform.name || 'LevisFX'}</span>
                 </div>
-                <span className='branded-loader__pulse' aria-hidden='true' />
+                <div className='branded-loader__track' aria-hidden='true'>
+                    <span className='branded-loader__bar' />
+                </div>
                 <p className='load-message'>{message}</p>
                 <span className='branded-loader__hint'>Preparing your trading workspace</span>
             </div>
