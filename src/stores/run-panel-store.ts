@@ -397,7 +397,7 @@ export default class RunPanelStore {
         this.onCancelButtonClick = null;
         this.dialog_options = {
             title: localize("LevisFX isn't quite ready for real accounts"),
-            message: localize('Please switch to your demo account to run your LevisFX.'),
+            message: localize('Please switch to your demo account to run this bot.'),
         };
         this.is_dialog_open = true;
     };

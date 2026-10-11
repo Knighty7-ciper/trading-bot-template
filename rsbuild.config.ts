@@ -34,6 +34,8 @@ export default defineConfig({
                 GD_API_KEY: JSON.stringify(process.env.GD_API_KEY),
             },
         },
+    },
+    resolve: {
         alias: {
             react: path.resolve('./node_modules/react'),
             'react-dom': path.resolve('./node_modules/react-dom'),
