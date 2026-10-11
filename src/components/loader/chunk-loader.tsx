@@ -10,7 +10,7 @@ export default function ChunkLoader({ message }: { message: string }) {
                     <span className='branded-loader__mark' aria-hidden='true'>L</span>
                     <span>{brandConfig.platform.name || 'LevisFX'}</span>
                 </div>
-                <Loader />
+                <Loader isFullScreen={false} />
                 <p className='load-message'>{message}</p>
                 <span className='branded-loader__hint'>Preparing your trading workspace</span>
             </div>
