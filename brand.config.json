@@ -2,8 +2,8 @@
     "brand_name": "LevisFX",
     "brand_domain": "levisfx.site",
     "brand_hostname": {
-        "staging": "staging.levisfx.site/dashboard",
-        "production": "levisfx.site/dashboard"
+        "staging": "staging.levisfx.site",
+        "production": "levisfx.site"
     },
     "domain_name": "LevisFX.site",
     "colors": {
