@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { CONNECTION_STATUS } from '@/external/bot-skeleton/services/api/observables/connection-status-stream';
+import { useApiBase } from '@/hooks/useApiBase';
 import useNavigatorOnline from './useNavigatorOnline';
 
 type TStatus = 'blinking' | 'offline' | 'online';
@@ -6,15 +8,13 @@ type TStatus = 'blinking' | 'offline' | 'online';
 const useNetworkStatus = () => {
     const [status, setStatus] = useState<TStatus>('online');
     const networkStatus = useNavigatorOnline();
-
-    // TODO we need socket connection state from api-hooks whenever it finished we can update this part and check
-    // both navigatorStatus and socket Status
-    // for now we just check the user network status.
+    const { connectionStatus } = useApiBase();
 
     useEffect(() => {
-        if (networkStatus) setStatus('online');
-        else setStatus('offline');
-    }, [networkStatus]);
+        if (!networkStatus) setStatus('offline');
+        else if (connectionStatus !== CONNECTION_STATUS.OPENED) setStatus('blinking');
+        else setStatus('online');
+    }, [networkStatus, connectionStatus]);
 
     return status;
 };

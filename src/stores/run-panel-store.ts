@@ -7,7 +7,6 @@ import { run_panel } from '@/constants/run-panel';
 import { ErrorTypes, MessageTypes, observer, unrecoverable_errors } from '@/external/bot-skeleton';
 import { getSelectedTradeType } from '@/external/bot-skeleton/scratch/utils';
 import { handleBackendError, isBackendError } from '@/utils/error-handler';
-// import { journalError, switch_account_notification } from '@/utils/bot-notifications';
 import GTM from '@/utils/gtm';
 import { helpers } from '@/utils/store-helpers';
 import { generateUrlWithRedirect } from '@/utils/url-redirect-utils';
@@ -471,8 +470,11 @@ export default class RunPanelStore {
                     () => client.loginid,
                     loginid => {
                         if (loginid && this.is_running) {
-                            // TODO: fix notifications
-                            // notifications.addNotificationMessage(switch_account_notification());
+                            botNotification(
+                                localize(
+                                    'You have switched accounts. Our system will finish any LevisFX trades that are running, and LevisFX will not place any new trades.'
+                                )
+                            );
                         }
                         this.dbot.terminateBot();
                         this.unregisterBotListeners();
@@ -721,9 +723,10 @@ export default class RunPanelStore {
             this.setActiveTabIndex(run_panel.JOURNAL);
             ui.setPromptHandler(false);
         } else {
-            // TODO: fix notifications
-            // notifications.addNotificationMessage(journalError(this.switchToJournal));
-            // notifications.removeNotificationMessage({ key: 'bot_error' });
+            botNotification(localize('The bot encountered an error while running.'), {
+                label: localize('View in Journal'),
+                onClick: () => this.switchToJournal(),
+            });
         }
     };
 
@@ -732,10 +735,6 @@ export default class RunPanelStore {
         journal.journal_filters.push(MessageTypes.ERROR);
         this.setActiveTabIndex(run_panel.JOURNAL);
         this.toggleDrawer(true);
-
-        // TODO: fix notifications
-        // notifications.toggleNotificationsModal();
-        // notifications.removeNotificationByKey({ key: 'bot_error' });
     };
 
     unregisterBotListeners = () => {

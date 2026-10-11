@@ -7,7 +7,7 @@ const useNetworkStatusToastError = () => {
     const status = useNetworkStatus();
 
     useEffect(() => {
-        if (status !== 'online') {
+        if (status === 'offline') {
             botNotification(localize('You are offline'));
         }
     }, [status]);
