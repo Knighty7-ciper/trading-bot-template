@@ -61,14 +61,16 @@ const AppRoot = () => {
         return () => clearTimeout(timeoutId);
     }, []);
 
-    if (!store || !is_api_initialized) return <AppRootLoader />;
-
     return (
         <Suspense fallback={<AppRootLoader />}>
-            <ErrorBoundary root_store={store}>
-                <ErrorComponentWrapper />
-                <AppContent />
-            </ErrorBoundary>
+            {store && is_api_initialized ? (
+                <ErrorBoundary root_store={store}>
+                    <ErrorComponentWrapper />
+                    <AppContent />
+                </ErrorBoundary>
+            ) : (
+                <AppRootLoader />
+            )}
         </Suspense>
     );
 };
