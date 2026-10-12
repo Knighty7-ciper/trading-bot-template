@@ -11,13 +11,19 @@ type Opportunity = {
 };
 
 const opportunities: Opportunity[] = [
-    { market: 'Volatility 100 (1s)', contract: 'Matches', signal: 'Watch', confidence: '68%', tone: 'blue', detail: 'Digit repetition setup forming' },
-    { market: 'Volatility 50 (1s)', contract: 'Differs', signal: 'Watch', confidence: '61%', tone: 'cyan', detail: 'Divergence from recent sequence' },
-    { market: 'Volatility 25 (1s)', contract: 'Under 6', signal: 'Observe', confidence: '57%', tone: 'violet', detail: 'Lower digit cluster detected' },
+    { market: 'Volatility 100 (1s)', contract: 'Matches', signal: 'Watch', confidence: '68%', tone: 'blue', detail: 'Digit repetition setup forming from the last 20 ticks' },
+    { market: 'Volatility 50 (1s)', contract: 'Differs', signal: 'Watch', confidence: '61%', tone: 'cyan', detail: 'Recent digits are spreading away from the current cluster' },
+    { market: 'Volatility 25 (1s)', contract: 'Under 6', signal: 'Observe', confidence: '57%', tone: 'violet', detail: 'Lower digit cluster detected across the selected window' },
+    { market: 'Volatility 75 (1s)', contract: 'Even', signal: 'Watch', confidence: '64%', tone: 'blue', detail: 'Parity balance is leaning below its rolling baseline' },
+    { market: 'Volatility 10 (1s)', contract: 'Over 3', signal: 'Observe', confidence: '55%', tone: 'cyan', detail: 'Higher digits are appearing more often than the baseline' },
+    { market: 'Step Index', contract: 'Rise / Fall', signal: 'Context', confidence: '52%', tone: 'violet', detail: 'Directional bias is building, but confirmation is still required' },
 ];
 
 const AnalysisPanel = () => {
     const [symbol, setSymbol] = React.useState('Volatility 100 (1s) Index');
+    const openBotBuilder = () => {
+        window.location.hash = 'bot_builder';
+    };
     const [timeframe, setTimeframe] = React.useState('5 minutes');
     const [activeLens, setActiveLens] = React.useState('All opportunities');
 
@@ -56,7 +62,7 @@ const AnalysisPanel = () => {
 
             <div className='analysis-panel__opportunities'>
                 <div className='analysis-panel__section-title'><div><span className='analysis-panel__eyebrow'>Pattern scanner</span><h3>Bot opportunities</h3></div><button type='button' className='analysis-panel__refresh'>Refresh scan</button></div>
-                <div className='analysis-opportunity-grid'>{opportunities.map(item => <article className='analysis-opportunity' key={`${item.market}-${item.contract}`}><div className='analysis-opportunity__top'><span className={`analysis-opportunity__icon analysis-opportunity__icon--${item.tone}`} /> <span>{item.market}</span><em>{item.signal}</em></div><h4>{item.contract}</h4><p>{item.detail}</p><div className='analysis-opportunity__bottom'><span>Pattern score <strong>{item.confidence}</strong></span><button type='button'>View bot</button></div></article>)}</div>
+                <div className='analysis-opportunity-grid'>{opportunities.map(item => <article className='analysis-opportunity' key={`${item.market}-${item.contract}`}><div className='analysis-opportunity__top'><span className={`analysis-opportunity__icon analysis-opportunity__icon--${item.tone}`} /> <span>{item.market}</span><em>{item.signal}</em></div><h4>{item.contract}</h4><p>{item.detail}</p><div className='analysis-opportunity__bottom'><span>Pattern score <strong>{item.confidence}</strong></span><button type='button' onClick={openBotBuilder}>Configure bot</button></div></article>)}</div>
             </div>
         </section>
     );
